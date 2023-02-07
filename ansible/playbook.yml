@@ -1,0 +1,26 @@
+- name: Install PHP
+  hosts: all
+  become: yes
+  
+  tasks:
+    - name: Install PHP
+      when: "'appserver' in devops-packer"
+      apt: name=php7.0-fpm state=installed
+   
+- name: Clone repository from GitHub
+  hosts: appserver:webserver
+  become: yes
+  
+  tasks:
+    - name: Clone repository
+      git:
+        repo: https://github.com/Fanny-gutting/devops-back.git
+        dest: /var/www/devops-back
+        version: master
+        
+    - name: Set ownership and permissions
+      file:
+        path: /var/www/devops-back
+        owner: www-data
+        group: www-data
+        mode: 0755
