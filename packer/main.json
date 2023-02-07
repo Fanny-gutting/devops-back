@@ -26,7 +26,9 @@
       "type": "shell",
       "inline": [
       "sudo apt-get update",
-      "sudo apt-get install -y php7.2-fpm"
+      "sudo apt-get install -y php7.2-fpm",
+      "sudo apt install php-cli unzip",
+      "sudo php composer-setup.php --install-dir=/usr/local/bin --filename=composer"
       ]
     }
   ]
